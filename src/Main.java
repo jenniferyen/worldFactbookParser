@@ -45,8 +45,9 @@ public class Main {
 		
 		// questions to be answered
 		String questions = 
-				  "NOTE: Due to some inconsistencies with the way the World Factbook presents information such as whether or not population is represented with scientific notation, "
-				+ "some of these questions may not return the correct answers because of different formatting from country to country. I apologize for the inconvenience. -- WILL TRY TO DEBUG"
+				  "NOTE: Due to some inconsistencies with the way the World Factbook presents information such as whether or not population is "
+				+ "\n represented with scientific notation, some of these questions may not return the correct answers because of different "
+				+ "\n formatting from country to country. I apologize for the inconvenience. -- WILL TRY TO DEBUG"
 				+ "\n 1. Countries in <insert continent> that are prone to <insert natural hazard>. Possibilities include earthquake, "
 				  + "flood, windstorm, typhoon, hurricane, drought, landslide, hailstorm" 
 				+ "\n 2. Countries that have an star in their flag" 
@@ -152,6 +153,33 @@ public class Main {
 		
 		// 5. Countries with dominant religion <choose more / less> than <insert percentage> of population
 		if (chooseQuestion.equals("5")) {
+			System.out.println("Indicate more or less by typing one of the options");
+			String moreOrLess = in.nextLine();
+			boolean more = false;
+			if (moreOrLess.equals("more")) {
+				more = true;
+				System.out.println("checking for countries with religions more than cutoff");
+			}
+			else {
+				System.out.println("checking for countries with religions less than cutoff");
+			}
+			System.out.println("Enter a percentage (without the percent symbol) as the cutoff");
+			String cutoffPercentage = in.nextLine();
+			double parsedCutoff = Double.parseDouble(cutoffPercentage);
+			if (more) {
+				for (CountryObject x : allCountries) {
+					if (x.getDomReligionPercent() > parsedCutoff) {
+						x.print();
+					}
+				}
+			}
+			if (!more) {
+				for (CountryObject x : allCountries) {
+					if (x.getDomReligionPercent() < parsedCutoff) {
+						x.print();
+					}
+				}
+			}
 			
 		}
 		
