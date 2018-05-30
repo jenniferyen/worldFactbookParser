@@ -1,0 +1,189 @@
+
+NETS150 - HW03
+THEORY
+PennKey: jenyen
+
+
+/*
+ * 1. A socket is an endpoint of a two-way communication link between 
+ *    two programs running on a network connection. It is bound to a port 
+ *    number so that the TCP layer can successfully send data to the 
+ *    correct location. 
+ *    A Socket object is used for a client, is bound to a specific port, and
+ *    implements one side of a two-way connection. On the other hand,
+ *    a ServerSocket object implements a socket that servers can use to listen 
+ *    for and accept connections from clients. 
+ *    
+ * 2. If this happens (like if the port is being used), then the Socket throws
+ *    an exception (java.net.ConnectException) and the Server has no choice but 
+ *    to exit. Communication is not possible because the client cannot read
+ *    and write from the socket. 
+ *    
+ * 3. Paper Program - 
+ *    The server should do the math and return the answer to the client.  
+ *    I have included my Server.java in my hw03 zip file. This is the only
+ *    file where I made modifications. 
+ *    	
+ * 
+ * PROGRAMMING
+ *
+ * [ASSUMPTIONS MADE] 
+ * 1. I hardcoded the territories/islands that my program should not consider 
+ *    a country (see CollectData.java). 
+ * 2. I also hardcoded Pennsylvania's total area and US's sea level. 
+ * 3. Because of the format of their
+ *    population statistics, the United States and Zambia return NumberFormatExceptions.
+ *    Instead of writing out the full number as in 123,456, for example, Zambia's 
+ *    population is listed as "15.972 million" for some reason. This is noted when I
+ *    calculate Electricity Consumption Per Capita. 
+ *
+ * 
+ * [QUESTIONS] 
+ * 
+ * 1. Countries in South America that are prone to Earthquakes: Argentina,
+ *    Chile, Colombia, Ecuador, and Peru. 
+ * 
+ * 2. Countries with a star in their flag: Algeria, Angola, Australia, Azerbaijan, 
+ *    Bosnia and Herzegovina, Brazil, Burkina Faso, Burma, Burundi, Cabo Verde, Cameroon, 
+ *    Central African Republic, Chile, China, Comoros, Democratic Republic of the Congo, 
+ *    Cuba, Djibouti, Dominica, Equatorial Guinea, Ghana, Grenada, Guinea Bissau, 
+ *    Honduras, Jordan, North Korea, Kosovo, Liberia, Libya, Malaysia, Marshall Islands,
+ *    Mauritania, Federated States of Micronesia, Mozambique, Nauru, New Zealand, Pakistan, 
+ *    Panama, Papua New Guinea, Paraguay, Phillipines, Saint Kitts and Nevis, Samoa, Sao Tome 
+ *    and Principe, Senegal, Singapore, Slovenia, Solomon Islands, Somalia, South Sudan, 
+ *    Suriname, Syria, Tajikistan, Timor Liste, Togo, Tunisia, Turkey, Turkmenistan, Tuvalu, 
+ *    United States, Uzbekistan, Venezuela, Vietnam, Zimbabwe
+ * 
+ * 3. Country with the smallest population in Europe: Norway
+ * 
+ * 4. Countries in Asia with a smaller total area than Pennsylvania: Bhutan, Brunei, South Korea,
+ *    Maldives, Singapore, Sri Lanka, Taiwan, Timor-Leste
+ *    NOTE: These do not include countries that are listed as part of the Middle East. The geographic
+ *    location of such countries was vague, often saying that some parts of the country are in Asia
+ *    and other parts in Europe. 
+ * 
+ * 5. Did not complete.
+ * 
+ * 6.  [COUNTRIES WHERE DOMINANT RELIGION ACCOUNTS FOR > 80%]: 
+		Algeria: Sunni Muslim (state religion) 99%
+		Argentina: nominally Roman Catholic 92% (less than 20% practicing)
+		Armenia: Armenian Apostolic 94.7%
+		Azerbaijan: Muslim 93.4%
+		Bahrain: Muslim (Shia and Sunni) 81.2%
+		Bangladesh: Muslim 89.5%
+		Bolivia: Roman Catholic 95%
+		Burma: Buddhist 89%
+		Cambodia: Buddhist (official) 96.4%
+		Colombia: Roman Catholic 90%
+		Comoros: Sunni Muslim 98%
+		Croatia: Roman Catholic 87.8%
+		Cuba: nominally Roman Catholic 85%
+		Denmark: Evangelical Lutheran (official) 95%
+		Djibouti: Muslim 94%
+		Dominican Republic: Roman Catholic 95%
+		Ecuador: Roman Catholic 95%
+		Egypt: Muslim (mostly Sunni) 90%
+		Finland: Lutheran Church of Finland 82.5%
+		France: Roman Catholic 83%-88%
+		Gambia, The: Muslim 90%
+		Georgia: Orthodox Christian (official) 83.9%
+		Greece: Greek Orthodox (official) 98%
+		Guam: Roman Catholic 85%
+		Guinea: Muslim 85%
+		Honduras: Roman Catholic 97%
+		Iceland: Lutheran Church of Iceland (official) 80.7%
+		India: Hindu 80.5%
+		Indonesia: Muslim 86.1%
+		Iran: Muslim (official) 98%
+		Iraq: Muslim (official) 97%
+		Ireland: Roman Catholic 87.4%
+		Japan: Shintoism 83.9%
+		Jordan: Sunni Muslim 92% (official)
+		Kuwait: Muslim (official) 85%
+		Liberia: Christian 85.6%
+		Libya: Sunni Muslim (official) 97%
+		Luxembourg: Roman Catholic 87%
+		Malawi: Christian 82.7%
+		Mali: Muslim 94.8%
+		Malta: Roman Catholic (official) 98%
+		Mauritania: Muslim (official) 100%
+		Mexico: Roman Catholic 82.7%
+		Moldova: Eastern Orthodox 98%
+		Monaco: Roman Catholic 90% (official)
+		Morocco: Muslim 99% (official)
+		Namibia: Christian 80% to 90% (at least 50
+		Nepal: Hindu 80.6%
+		Pakistan: Muslim (official) 96.4% (Sunni 85-90%)
+		Panama: Roman Catholic 85%
+		Paraguay: Roman Catholic 89.6%
+		Peru: Roman Catholic 81.3%
+		Poland: Roman Catholic 89.8% [about 75% practicing]
+		Portugal: Roman Catholic 84.5%
+		Puerto Rico: Roman Catholic 85
+		Saudi Arabia: Muslim (official) 100%
+		Senegal: Muslim 94%
+		Serbia: Serbian Orthodox 85%
+		Seychelles: Roman Catholic 82.3%
+		Spain: Roman Catholic 94
+		Sweden: Lutheran 87%
+		Taiwan: mixture of Buddhist and Taoist 93%
+		Tajikistan: Sunni Muslim 85%
+		Thailand: Buddhist (official) 94.6%
+		Timor-Leste: Roman Catholic 98%
+		Turkey: Muslim 99.8% (mostly Sunni)
+		Turkmenistan: Muslim 89%
+		Tuvalu: Protestant 98.4% (Church of Tuvalu (Congregationalist) 97%
+		Uzbekistan: Muslim 88% (mostly Sunni)
+		Venezuela: nominally Roman Catholic 96%
+		
+		[COUNTRIES WHERE DOMINANT RELIGION ACCOUNTS FOR < 50%]: 
+		Angola: indigenous beliefs 47%
+		Belize: Roman Catholic 39.3%
+		Benin: Catholic 27.1%
+		Bosnia and Herzegovina: Muslim 40%
+		Cameroon: indigenous beliefs 40%
+		Canada: Roman Catholic 42.6%
+		Central African Republic: indigenous beliefs 35%
+		Cote d’Ivoire: Muslim 38.6%
+		Czech Republic: Roman Catholic 10.3%
+		Estonia: Evangelical Lutheran 13.6%
+		Ethiopia: Ethiopian Orthodox 43.5%
+		Germany: Protestant 34%
+		Jamaica: Protestant 62.5%
+		Korea, South: Christian 31.6%
+		Latvia: Lutheran 19.6%
+		Mauritius: Hindu 48%
+		Mozambique: Catholic 28.4%
+		Netherlands: Roman Catholic 30%
+		Palau: Roman Catholic 41.6%
+		Papua New Guinea: Roman Catholic 27%
+		Russia: Russian Orthodox 15-20%
+		Singapore: Buddhist 42.5%
+		Suriname: Hindu 27.4%
+		Swaziland: Zionist 40%
+		Switzerland: Roman Catholic 41.8%
+		Togo: Christian 29%
+		Tonga: Christian (Free Wesleyan Church claims over 30%
+		Trinidad and Tobago: Roman Catholic 26%
+		Uganda: Roman Catholic 41.9%
+		Uruguay: Roman Catholic 47.1%
+		Vietnam: Buddhist 9.3%
+
+ * 7. Countries that are landlocked by only one country: Lesotho, San Marino
+ *    NOTE: I did not catch in the instructions to search for countries landlocked by only
+ *    one country so I found all landlocked countries then manually narrowed down the countries
+ *    landlocked by only one country. 
+ * 
+ * 8. Countries that are above sea level of that of the US (760 m) in Africa: Algeria, Angola
+ *    Botswana, Burundi, Eritrea, Ethiopia, Kenya, Lesotho, Malawi, Morocco, Namibia, Rwanda, 
+ *    South Africa, Tanzania, Zambia, and Zimbabwe
+ *
+ * 
+ * EXTRA CREDIT
+ * 1. [DOUBLE CHECK] - Top 5 countries with the highest electricity consumption per capita: 
+ *    Iceland, Norway, Kuwait, Finland, Canada
+ * 
+ * 2.
+ * 
+ * 
+ */
