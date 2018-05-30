@@ -48,12 +48,12 @@ public class ParseCountry {
 		parseHazards(); // WORKS
 		parseStarInFlag(); // WORKS
 		parsePopulation(); // WORKS
-		parseArea();
-		areaLessThanPennsylvania(); 
+		parseArea(); // WORKS
+		areaLessThanPennsylvania(); // WORKS
 		parseDomReligion(); // WORKS
-		parseLandlocked();
-		parseElevation();
-		elevationAboveSeaLevel();
+		parseLandlocked(); // WORKS
+		parseElevation(); // WORKS
+		elevationAboveSeaLevel(); // WORKS
 		parseElecConsump();
 		System.out.println("Electricity Consumption Per Capita: " + calculateElecConsumpPerCapita());
 		System.out.println("*****************");

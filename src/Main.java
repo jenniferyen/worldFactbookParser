@@ -45,20 +45,21 @@ public class Main {
 		
 		// questions to be answered
 		String questions = 
-				  "\n 1. Countries in <insert continent> that are prone to <insert natural hazard>. Possibilities include earthquake, "
+				  "NOTE: Due to some inconsistencies with the way the World Factbook presents information such as whether or not population is represented with scientific notation, "
+				+ "some of these questions may not return the correct answers because of different formatting from country to country. I apologize for the inconvenience. -- WILL TRY TO DEBUG"
+				+ "\n 1. Countries in <insert continent> that are prone to <insert natural hazard>. Possibilities include earthquake, "
 				  + "flood, windstorm, typhoon, hurricane, drought, landslide, hailstorm" 
 				+ "\n 2. Countries that have an star in their flag" 
 				+ "\n 3. Countries with the smallest population in <insert continent>"
 				+ "\n 4. Countries in <insert continent> that have a smaller total area than PA" 
-				+ "\n 5. <insert number> oldest International Organizations and Groups in chronological order" 
-				+ "\n 6. Countries with dominant religion <choose more / less> than <insert percentage> of population"
-				+ "\n 7. Countries that are landlocked" 
-				+ "\n 8. Countries above sea level of that of the US (760 m) in <insert continent>"
-				+ "\n 9. Top <insert number> countries with the highest electricity consumption per capita"; 
+				+ "\n 5. Countries with dominant religion <choose more / less> than <insert percentage> of population"
+				+ "\n 6. Countries that are landlocked" 
+				+ "\n 7. Countries above sea level of that of the US (760 m) in <insert continent>"
+				+ "\n 8. Top <insert number> countries with the highest electricity consumption per capita"; 
 		
 		Scanner in = new Scanner(System.in);
 		System.out.println(questions);
-		System.out.println("Choose a question to answer (type in a number from 1-10)");
+		System.out.println("Choose a question to answer (type in a number from 1-8)");
 		String chooseQuestion = in.nextLine();
 		
 		// 1. Countries in <insert continent> that are prone to <insert natural hazard>
@@ -107,7 +108,7 @@ public class Main {
 			System.out.println("Enter a continent");
 			String continent = in.nextLine();
 			
-			// filter by continent given
+			// go thru all countries and get ArrayList that corresponds w the continent
 			ArrayList<CountryObject> sortedByContinent = new ArrayList<CountryObject>();
 			for (CountryObject x : allCountries) {
 				String countryContinent = x.getContinent();
@@ -122,8 +123,8 @@ public class Main {
 			for (CountryObject x : sortedByContinent) {
 				if (x.getPopulation() < smallestPop) {
 					smallestPop = x.getPopulation();
-					countryWithSmallestPop = x.getName();
 				}
+				countryWithSmallestPop = x.getName();
 			}
 			System.out.println(countryWithSmallestPop);
 		}
@@ -149,18 +150,13 @@ public class Main {
 			}
 		}
 		
-		// 5. <insert number> oldest International Organizations and Groups in chronological order
+		// 5. Countries with dominant religion <choose more / less> than <insert percentage> of population
 		if (chooseQuestion.equals("5")) {
 			
 		}
 		
-		// 6. Countries with dominant religion <choose more / less> than <insert percentage> of population
+		// 6. Countries that are landlocked
 		if (chooseQuestion.equals("6")) {
-			
-		}
-		
-		// 7. Countries that are landlocked
-		if (chooseQuestion.equals("7")) {
 			for (CountryObject x : allCountries) {
 				if (x.getLandlocked()) {
 					x.print();
@@ -168,8 +164,8 @@ public class Main {
 			}
 		}
 		
-		// 8. Countries that are above sea level in <insert continent>
-		if (chooseQuestion.equals("8")) {
+		// 7. Countries that are above sea level in <insert continent>
+		if (chooseQuestion.equals("7")) {
 			System.out.println("Enter continent");
 			String continent = in.nextLine();
 			
@@ -189,9 +185,9 @@ public class Main {
 			}
 		}
 		
-		// 9. Top <insert number> countries with the highest electricity consumption per capita
+		// 8. Top <insert number> countries with the highest electricity consumption per capita
 		//    NOTE: There is a bug somewhere causing me to simply return the first 5 countries in the Factbook.
-		if (chooseQuestion.equals("9")) {
+		if (chooseQuestion.equals("8")) {
 			
 			System.out.println("Insert number of countries");
 			String numCountries = in.nextLine();
