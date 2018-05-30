@@ -8,6 +8,10 @@ import java.util.Scanner;
  */
 public class Main {
 	private static ArrayList<CountryObject> allCountries;
+	public ArrayList<CountryObject> getAllCountries() {
+		return allCountries;
+	}
+	
 	public final static String FACTBOOK_URL = 
 			"https://www.cia.gov/library/publications/the-world-factbook/print/textversion.html";
 	
@@ -214,19 +218,24 @@ public class Main {
 		}
 		
 		// 8. Top <insert number> countries with the highest electricity consumption per capita
-		//    NOTE: There is a bug somewhere causing me to simply return the first 5 countries in the Factbook.
+		//    NOTE: There is a bug causing me to simply return the first 5 countries in the Factbook.
 		if (chooseQuestion.equals("8")) {
 			
-			System.out.println("Insert number of countries");
+			System.out.println("Enter number of countries");
 			String numCountries = in.nextLine();
 			
+			// gets countries with relevant data
 			ArrayList<CountryObject> highestElecConsump = new ArrayList<CountryObject>();
 			for (CountryObject x : allCountries) {
 				if ((x.getElecConsump() / x.getPopulation()) != 0) {
 					highestElecConsump.add(x);
 				}
 			}
+			
+			// sorts countries using comparator 
 			Collections.sort(highestElecConsump, new CompareElecConsump());
+			
+			// selects top numCountries countries 
 			ArrayList<CountryObject> sortedArray = new ArrayList<CountryObject>();
 			int count = 0;
 			for (CountryObject y : highestElecConsump) {
@@ -245,5 +254,6 @@ public class Main {
 				System.out.println("Invalid input");
 			}		
 		}
+		
 	}
 }
