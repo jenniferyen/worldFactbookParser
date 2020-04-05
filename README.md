@@ -1,5 +1,5 @@
 # WorldFactbookParser
-web scraper that searches for information from the CIA World Factbook to answer specific questions, project coded in Java--spring 2k18, freshman year at UPenn. 
+web scraper that searches for information from the CIA World Factbook to answer specific questions, project coded in Java--spring 2k18, [NOT COMPLETELY FINISHED AND ACCURATE--just saving what I have]. 
 
 Dependencies:
 jsoup: http://jsoup.org/
